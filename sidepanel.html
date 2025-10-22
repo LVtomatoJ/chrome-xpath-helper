@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XPath Helper</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔍 XPath Helper</h1>
+      <p class="subtitle"></p>
+    </div>
+    
+    <div class="input-section">
+      <label for="xpath-input">XPath 表达式：</label>
+      <div class="input-group">
+        <textarea 
+          id="xpath-input" 
+          placeholder="例如：//div[@class='content']&#10;支持多行输入"
+          rows="3"
+        ></textarea>
+      </div>
+      <button id="search-btn" class="btn btn-primary">
+        <span class="btn-icon">🔎</span> 查询
+      </button>
+    </div>
+
+    <div class="quick-examples">
+      <div class="examples-header">
+        <span>快速示例：</span>
+      </div>
+      <div class="examples-buttons">
+        <button class="example-btn" data-xpath="//a">所有链接</button>
+        <button class="example-btn" data-xpath="//img/@src">图片地址</button>
+        <button class="example-btn" data-xpath="//h1 | //h2">标题</button>
+        <button class="example-btn" data-xpath="//*[@id]">有ID的元素</button>
+      </div>
+    </div>
+
+    <div class="history-section" id="history-section" style="display: none;">
+      <div class="history-header">
+        <span>📜 查询历史：</span>
+        <button class="clear-history-btn" id="clear-history-btn" title="清空历史">🗑️</button>
+      </div>
+      <div class="history-list" id="history-list"></div>
+    </div>
+
+    <div class="results-section">
+      <div class="results-header">
+        <span id="result-count" class="result-count">匹配结果：0</span>
+        <div class="header-actions">
+          <button id="clear-btn" class="btn btn-clear" title="清除结果">
+            <span>🗑️ 清除</span>
+          </button>
+          <button id="copy-all-btn" class="btn btn-secondary" disabled>
+            <span>📋 复制全部</span>
+          </button>
+        </div>
+      </div>
+      
+      <div id="results-container" class="results-container">
+        <div class="empty-state">
+          <div class="empty-icon">📝</div>
+          <p>输入XPath表达式开始查询</p>
+          <p class="empty-hint">或点击上方的快速示例</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="sidepanel.js"></script>
+</body>
+</html>
+
