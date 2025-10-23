@@ -405,6 +405,16 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+// HTML属性转义（包括引号）
+function escapeHtmlAttribute(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 // 保存查询历史
 function saveToHistory(xpath) {
   try {
@@ -435,7 +445,7 @@ function loadHistory() {
     historySection.style.display = 'block';
     historyList.innerHTML = history.map((xpath, index) => {
       const shortXpath = xpath.length > 60 ? xpath.substring(0, 60) + '...' : xpath;
-      return `<div class="history-item" data-xpath="${escapeHtml(xpath)}" title="${escapeHtml(xpath)}">${escapeHtml(shortXpath)}</div>`;
+      return `<div class="history-item" data-xpath="${escapeHtmlAttribute(xpath)}" title="${escapeHtmlAttribute(xpath)}">${escapeHtml(shortXpath)}</div>`;
     }).join('');
     
     // 为历史记录项添加点击事件
