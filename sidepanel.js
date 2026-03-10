@@ -157,14 +157,12 @@ function evaluateXPath(xpath) {
 
 // 显示结果
 function displayResults(results) {
-  resultCount.textContent = `匹配结果：${results.length}`;
+  resultCount.textContent = `结果：${results.length}`;
   
   if (results.length === 0) {
     resultsContainer.innerHTML = `
       <div class="empty-state">
-        <div class="empty-icon">😕</div>
         <p>未找到匹配的元素</p>
-        <p class="empty-hint">请检查XPath表达式是否正确</p>
       </div>
     `;
     copyAllBtn.disabled = true;
@@ -180,8 +178,8 @@ function displayResults(results) {
           <span style="opacity: 0.7">#${index + 1}</span>
         </span>
         <div class="result-actions">
-          <button class="btn-copy" data-index="${index}" title="复制此结果">📋 复制</button>
-          <button class="btn-highlight" data-index="${index}" title="在页面中高亮">🎯 高亮</button>
+          <button class="btn-copy" data-index="${index}" title="复制此结果">复制</button>
+          <button class="btn-highlight" data-index="${index}" title="在页面中高亮">高亮</button>
         </div>
       </div>
       <div class="result-content">${escapeHtml(result.content)}</div>
@@ -338,12 +336,10 @@ function clearResults() {
   xpathInput.value = '';
   resultsContainer.innerHTML = `
     <div class="empty-state">
-      <div class="empty-icon">📝</div>
-      <p>输入XPath表达式开始查询</p>
-      <p class="empty-hint">或点击上方的快速示例</p>
+      <p>输入 XPath 表达式开始查询</p>
     </div>
   `;
-  resultCount.textContent = '匹配结果：0';
+  resultCount.textContent = '结果：0';
   copyAllBtn.disabled = true;
 }
 
@@ -383,18 +379,8 @@ function showError(message) {
     <div class="error-message">
       ⚠️ <strong>错误：</strong><br>${escapeHtml(message)}
     </div>
-    <div class="empty-state">
-      <div class="empty-icon">💡</div>
-      <p>XPath语法提示：</p>
-      <p class="empty-hint">
-        // = 选择所有后代<br>
-        / = 选择直接子元素<br>
-        @ = 选择属性<br>
-        [] = 条件过滤
-      </p>
-    </div>
   `;
-  resultCount.textContent = '匹配结果：0';
+  resultCount.textContent = '结果：0';
   copyAllBtn.disabled = true;
 }
 
